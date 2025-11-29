@@ -1,23 +1,23 @@
-# Product Management API
+# Inventory API
 
-A Node.js & Express.js REST API with Role‑Based Access Control (RBAC), JWT authentication, pagination, filtering, and CRUD operations for products.
+A Node.js & Express.js REST API for managing inventory with **Role-Based Access Control (RBAC)**, JWT authentication, pagination, filtering, and CRUD operations for products/items.
 
 ---
 
 ## Features
 
-- User Authentication (JWT)  
-- Role-Based Access Control: `admin`, `user`  
-- CRUD operations for products (Create, Read, Update, Delete)  
-- Pagination & filtering of products  
-- Password hashing (bcrypt)  
-- Middleware: request logger, error handler, role check  
+- **User Authentication** with JWT
+- **Role-Based Access Control**: `admin`, `user`
+- **CRUD Operations** for inventory items (Create, Read, Update, Delete)
+- **Pagination & Filtering** of items
+- **Password Hashing** using bcrypt
+- **Middleware**: request logger, error handler, role check
 
 ---
 
 ## Project Structure
 
-product-api/
+inventory-api/
 ├── package.json
 ├── README.md
 └── src/
@@ -44,6 +44,8 @@ product-api/
 
 ## Environment Variables
 
+Create a `.env` file in the root:
+
 
 
 PORT=5000
@@ -56,78 +58,69 @@ JWT_SECRET=mysecret123
 
 ### Users
 
-| Method | Endpoint   | Auth required? |
+| Method | Endpoint   | Auth Required? |
 |--------|------------|----------------|
-| POST   | `/register` | No             |
-| POST   | `/login`    | No             |
-| GET    | `/profile`  | Yes (JWT)      |
+| POST   | /register  | No             |
+| POST   | /login     | No             |
+| GET    | /profile   | Yes (JWT)      |
 
-### Products
+### Products / Inventory Items
 
-| Method | Endpoint             | Roles allowed        |
-|--------|----------------------|----------------------|
-| GET    | `/products`           | admin, user          |
-| GET    | `/products/:id`       | admin, user          |
-| POST   | `/products`           | admin                |
-| PUT    | `/products/:id`       | admin                |
-| DELETE | `/products/:id`       | admin                |
+| Method | Endpoint           | Roles Allowed |
+|--------|------------------|---------------|
+| GET    | /products         | admin, user   |
+| GET    | /products/:id     | admin, user   |
+| POST   | /products         | admin         |
+| PUT    | /products/:id     | admin         |
+| DELETE | /products/:id     | admin         |
 
-#### Pagination & Filtering
+---
 
-- Query parameters supported: `page`, `limit`, `category`, `minPrice`, `maxPrice`, `search`  
-- Example: `/products?search=phone&category=mobile&page=2&limit=5`  
+## Pagination & Filtering
+
+Supports query parameters:
+
+
+
+page, limit, category, minPrice, maxPrice, search
+
+
+**Example:**
+
+
+
+/products?search=laptop&category=electronics&page=1&limit=10
+
 
 ---
 
 ## RBAC & Authentication
 
 - JWT authentication to verify user identity  
-- Role‑middleware to check for allowed roles; unauthorized access returns 403  
+- Role middleware to check allowed roles  
+- Unauthorized access returns **403 Forbidden**
 
 ---
 
 ## Middleware
 
-- Logger: logs every HTTP request  
-- 404 Handler: handles unknown routes with a clean 404 response  
-- Error Handler: global error-handling middleware for catching server errors  
+- **Logger**: logs every HTTP request  
+- **404 Handler**: handles unknown routes with a clean 404 response  
+- **Error Handler**: global middleware for server errors  
 
 ---
 
 ## Setup & Running Locally
 
 ```bash
-# Install dependencies  
-npm install  
+# Install dependencies
+npm install
 
-# (Optional) Install nodemon for development  
-npm install --save-dev nodemon  
+# (Optional) Install nodemon for development
+npm install --save-dev nodemon
 
-# Run in development  
-npm run dev  
+# Run in development
+npm run dev
 
-# Run in production mode  
-npm start  
-
-Testing
-
-You can test the API manually using Postman / Thunder Client.
-Automated tests (if present) use Jest + Supertest covering controllers, authentication, RBAC, pagination, and filtering.
-
-License
-
-MIT License
-
-Authors / Contributors
-
-[Your Name] — initial work & maintenance
-
-Acknowledgements
-
-Thanks to all open‑source libraries and contributors that make this project possible.
-
-
----
-
-If you want — I can **generate a fully formatted README** (Markdown) based on this template for you — i.e. ready to paste. Do you want me to prepare that now?
-::contentReference[oaicite:0]{index=0}
+# Run in production mode
+npm start
