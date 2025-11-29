@@ -5,6 +5,7 @@ import {
   createNewItem,
   updateItem,
   deleteItem,
+  testController, // <-- import test controller
 } from "../controllers/inventoryControllers.js";
 
 import { auth, authorizeRoles } from "../middleware/auth.js";
@@ -21,5 +22,8 @@ router.put("/:id", auth, authorizeRoles("ADMIN", "WAREHOUSE_STAFF"), updateItem)
 
 // Only Admin
 router.delete("/:id", auth, authorizeRoles("ADMIN"), deleteItem);
+
+// ==================== TEST ROUTE (for Git commit) ====================
+router.get("/test", auth, testController);
 
 export default router;

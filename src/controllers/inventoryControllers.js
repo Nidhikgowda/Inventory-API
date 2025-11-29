@@ -163,3 +163,9 @@ export const deleteItem = (req, res, next) => {
     next(err);
   }
 };
+
+// ==================== TEST CONTROLLER (for Git commit) ====================
+export const testController = (req, res) => {
+  console.log("Test controller called");
+  res.json({ message: "Controller test successful!" });
+};
